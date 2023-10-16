@@ -11,6 +11,7 @@
     }
 }
 ?>
+<!-- ajnsbdjasdnjas -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,6 @@
                 <br>
             <p style="color: white;">Want a server for your company?Email us at xyz@gmail.com</p>
 			</div>
-			
 		</div>
 	</div>
 </div>
