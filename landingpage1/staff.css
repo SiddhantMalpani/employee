@@ -1,0 +1,166 @@
+body{
+    overflow: hidden;
+    background-color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.head{
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(45deg, purple, rgb(55, 55, 115));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.footer{
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
+
+
+.head-icon1{
+    font-size: 25px;
+    margin-left: 10px;
+    color: white;
+    opacity: 0.8;
+}
+
+.head-icon2{
+    font-size: 25px;
+    margin-right: 10px;
+    color: rgb(224, 70, 96)
+}
+
+.logo-name{
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.head-icon2-group{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.top{
+    height: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.Departments{
+    margin-top: 10px;
+}
+
+.home-icon{
+    display: flex;
+    justify-content: center;
+}
+
+.home-icon2{
+    font-size: 10px;
+    margin-top: 12px;
+    color: grey;
+    padding: 5px;
+}
+
+.home{
+    font-size: 10px;
+    color: grey;
+    margin-top: 13px;
+}
+
+.footer{
+    
+    font-size: small;
+    color: grey;
+    display: flex;
+
+}
+
+.copyright-icon{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.copyright-text{
+    margin-top: 3px;
+}
+.jpp{
+    margin-top: 40px;
+    margin-left: 10%;
+    
+}
+.head-icon1:hover{
+    opacity: 1;
+    font-size: 28;
+    transition: 0.5s;
+}
+
+.sidebarheight{
+    height: 100vh;
+}
+
+.head{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.closingbtn{
+    font-size: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+.margin{
+    font-size: 10px;
+    margin-top: 10px;
+    color: grey;
+    padding: 5px;
+}
+
+.department-box {
+    height: 200px;
+    width: calc(100% - 40px); /* Adjusted width to account for left and right margins */
+    margin: 20px; /* 20px margin on all sides */
+    box-sizing: border-box;
+    border-top: 5px solid lightblue;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray ;
+    background-color: white;
+}
+
+.department-content{
+    margin: 10px;
+}
+
+.department-form{
+    margin:20px ;
+}
+
+.dptbtn{
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+}
+
+.main{
+    width: 100%;
+}

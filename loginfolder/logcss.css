@@ -1,0 +1,76 @@
+.center{
+    position: absolute;
+    left: 20%;
+    top: 5%;
+}
+.cent{
+    background-color: whitesmoke;
+    border: 5px solid skyblue;
+    border-radius: 10px;
+    height: 55vh;
+}
+.frm{
+    margin-top: 10px;   
+}
+.welcome{
+    font-family: 'Young Serif', serif;
+    color: peru;
+    font-size: 25px;
+}
+.alpha{
+    display: flex;
+    flex-wrap: wrap;
+}
+body{
+    background-color: aqua;
+}
+.divider:after,
+.divider:before {
+content: "";
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+.heading{
+    justify-content: center;
+}
+
+@media (max-width: 450px) {
+ .h-custom {
+ height: 100%;
+ }
+}
+.alert {
+    margin-bottom: 1px;
+    height: 45px;
+}
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+body  {
+    background-image: url('/loginfolder/images/4380.jpg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
+}
