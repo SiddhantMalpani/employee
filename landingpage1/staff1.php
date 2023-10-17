@@ -432,8 +432,8 @@
                     <div class="container">
                             <div class="row mt-5">
                                <div class="col">
-                                 <div class="card mt-5">
-                                   <table class="table table-bordered text-center">
+                                 <div class="card mt-5" style="height:300px; overflow-y:scroll">
+                                   <table class="table table-bordered text-300pxcenter">
                                     <tr>
                                         <td><b>S.NO</b></td>
                                         <td><b>EMPLOYEE NAME</b></td>

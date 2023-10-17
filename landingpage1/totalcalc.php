@@ -9,5 +9,9 @@
  FROM login WHERE emp_department <> 'Administration'";
  $emp_count=mysqli_query($conn,$query2);
  $count2=mysqli_num_rows($emp_count);
- 
+ $query3="SELECT SUM(emp_salary) AS Total
+ FROM login";
+ $sal_count3=mysqli_query($conn,$query3);
+ $c = $sal_count3->fetch_assoc();
+ $count3=$c['Total'];
 ?>

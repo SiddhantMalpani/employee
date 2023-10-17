@@ -569,11 +569,11 @@ if(isset($_POST['dash'])){
                         </div>
                         <div class="card-body">
                             <span class="dashboard-card">
-                                <h2 class="card-title pricing-card-title num">0</h2>
+                                <h2 class="card-title pricing-card-title num"><?php echo $count3 ?></h2>
                                 <i class="fa-solid fa-indian-rupee-sign"></i>
                             </span>
-                           <form action="#" method="POST">
-                            <button type="button" name="sal" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                            <form action="#" method="POST">
+                            <button type="submit" name="sal" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
                                 >></button>
                                 </form>
                         </div>

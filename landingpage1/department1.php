@@ -404,7 +404,7 @@
                         <div class="container">
                             <div class="row mt-5">
                                <div class="col">
-                                 <div class="card mt-5">
+                                 <div class="card mt-5" style="height:450px; overflow-y:scroll">
                                    <table class="table table-bordered text-center" >
                                     <tr>
                                         <td><b>S.NO</b></td>

@@ -10,6 +10,9 @@ if(isset($_POST['logout'])){
 if(isset($_POST['coll'])){
     header("Location: /landingpage1/colleague1.php");
 }
+if(isset($_POST['leav'])){
+    header("Location: /landingpage1/leavestaff.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -477,8 +480,10 @@ if(isset($_POST['coll'])){
                                 <i class="fa-solid fa-right-from-bracket"></i>
                             </span>
 
-                            <button type="button" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                            <form action="#" method="POST">
+                            <button type="submit" name="leav" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
                                 >></button>
+                                </form>
                         </div>
                     </div>
 
