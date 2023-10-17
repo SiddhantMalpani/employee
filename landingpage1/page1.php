@@ -6,6 +6,9 @@ if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
     die();
 }
+if(isset($_POST['sal'])){
+    header("Location: /landingpage1/salary1.php");
+}
 if(isset($_POST['mi'])){
     header("Location: /landingpage1/department1.php");
 }
@@ -432,10 +435,10 @@ if(isset($_POST['dash'])){
                             </ul>
                         </div>
                     </li>
-                    <div class="aapp">
-                    <form action="#" method="POST">
-                    <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
-                    </form>
+                    <div class="aapp" style="margin-top: 180%;margin-left: 45px;">
+                     <form action="#" method="POST">
+                     <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
+                     </form>
                     </div>  
                     <!-- <li class="border-top my-3 "></li> -->
                     <!-- <li class="borderline">  <br> </li> -->
@@ -569,9 +572,10 @@ if(isset($_POST['dash'])){
                                 <h2 class="card-title pricing-card-title num">0</h2>
                                 <i class="fa-solid fa-indian-rupee-sign"></i>
                             </span>
-
-                            <button type="button" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                           <form action="#" method="POST">
+                            <button type="button" name="sal" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
                                 >></button>
+                                </form>
                         </div>
                     </div>
 

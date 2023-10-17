@@ -15,6 +15,8 @@
       die();
     }
     else{
+      session_start();
+      $_SESSION['employeename']=$uname;
       header("Location: /landingpage1/page2.php");
       die();
     }

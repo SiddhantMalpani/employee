@@ -1,3 +1,19 @@
+<?php
+ include '/xampp/htdocs/employee/loginfolder/lconnect.php';
+ include '/xampp/htdocs/employee/landingpage1/alldep.php';
+ session_start();
+ $newname= $_SESSION['employeename'];
+ $query1="SELECT emp_department
+ FROM login
+ WHERE emp_name = '$newname'";
+ $data=mysqli_query($conn,$query1);
+ $tourresult = $data->fetch_array()['emp_department'] ?? '';
+ $query="SELECT emp_name,emp_email
+ FROM login
+ WHERE emp_department = '$tourresult'
+ GROUP BY emp_email";
+ $result=mysqli_query($conn,$query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -250,49 +266,11 @@
                     <span class="fs-5 fw-semibold">Collapsible</span>
                   </a> -->
                 <div class="sidebarhead">
-                    <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        Employee M S <button type="button" class="btn-close closingbtn" disabled
-                            aria-label="Close"></button></h4>
-
-                </div>
+                    <h5 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
+                        <?php echo "WELCOME ".strtoupper($newname) ?></h5>
+                            </div>
                 <ul class="list-unstyled ps-0">
-                    <li class="mb-1">
-                        <button
-                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
-                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-                            Department
-                        </button>
-                        <div class="collapse " id="home-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Department</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Department</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button
-                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
-                            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Staff
-                        </button>
-                        <div class="collapse" id="dashboard-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Edit
-                                        Staff</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                   
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
@@ -302,7 +280,7 @@
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
                                         Salary</a></li>
                             </ul>
                         </div>
@@ -317,34 +295,18 @@
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Apply
                                         Leave</a></li>
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Approve
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
                                         Leave</a></li>
                             </ul>
                         </div>
                     </li>
 
-                    <!-- <li class="border-top my-3 "></li> -->
-                    <!-- <li class="borderline">  <br> </li> -->
-
-
-                    <!-- <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                    Account
-                  </button>
-                  <div class="collapse" id="account-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a></li>
-                    </ul>
-                  </div>
-                </li> -->
+                    
                 </ul>
-            </div>
+            </div>>
 
             <div class="main">
 
@@ -352,7 +314,7 @@
                 <div class="head">
                     <div class="head-icon2-group">
                         <i class="fa-solid fa-user head-icon2"></i>
-                        <p class="logo-name">Admin</p>
+                        <p class="logo-name"><?php echo strtoupper($newname)?></p>
                     </div>
                 </div>
 
@@ -360,34 +322,51 @@
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2>Departments</h2>
+                            <h2>COLLEAGUES</h2>
                         </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                 <ol class="breadcrumb margin">
-                                    <li class="breadcrumb-item">Home</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Departments</li>
-                                    <li class="breadcrumb-item active" aria-current="page"> Add Departments</li>
+                                    <li class="breadcrumb-item"><a href="/landingpage1/page2.php">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">COLLEAGUES</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
-
-                    <div class="department-box">
-                        <div class="department-content">
-                            <h3>Add Department</h3>
-                            <div class="department-form">
-                                <form class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInputValue" placeholder="Add Department" >
-                                    <label for="floatingInputValue">Add Department </label>
-
-                                  </form>                                  
+                    <div class="container">
+                        <h2>You are from <?php echo $tourresult ?> department</h2>
+                    </div>
+                    <div class="container">
+                            <div class="row mt-5">
+                               <div class="col">
+                                 <div class="card mt-5">
+                                   <table class="table table-bordered text-center">
+                                    <tr>
+                                        <td><b>S.NO</b></td>
+                                        <td><b>EMPLOYEE NAME</b></td>
+                                        <td><b>EMPLOYEE EMAIL</b></td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <?php
+                                         $cc=1;
+                                          while($row = mysqli_fetch_assoc($result)){
+                                        ?>
+                                        <td><?php echo $cc++; ?></td>
+                                        <td><?php echo $row['emp_name']; ?></td>
+                                        <td><?php echo $row['emp_email']; ?></td>
+                                        
+                                    </tr>
+                                    <?php
+                                      }
+                                     ?>
+                                   </table>
+                                 </div>
+                               </div>
                             </div>
                         </div>
-                        <button class="dptbtn">Submit</button>
-                    </div>
-
+                    
 
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>

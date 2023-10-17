@@ -2,6 +2,8 @@ body{
     overflow: hidden;
     background-color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
+    background-image: url(/landingpage1/apic.jpg);
+    background-size: cover;
 }
 
 .head{
@@ -9,10 +11,7 @@ body{
     width: 100%; 
     
 }
-.aapp{
-    margin-top: 180%;
-    margin-left: 45px;
-}
+
 .headadjust{
     background: linear-gradient(45deg, purple, rgb(55, 55, 115));
     display: flex;

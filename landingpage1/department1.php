@@ -293,7 +293,7 @@
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/landingpage1/department1.php"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Department</a></li>
                                 <li><a href="#"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
@@ -405,7 +405,7 @@
                             <div class="row mt-5">
                                <div class="col">
                                  <div class="card mt-5">
-                                   <table class="table table-bordered text-center">
+                                   <table class="table table-bordered text-center" >
                                     <tr>
                                         <td><b>S.NO</b></td>
                                         <td><b>Department Name</b></td>
@@ -443,9 +443,7 @@
                 </div>
                  </form>
                 </div>        
-                    </body>
-
-
+             </body>
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>
                     </div>
