@@ -33,6 +33,9 @@
     $query="SELECT emp_name,emp_email,emp_gender,emp_department FROM login WHERE emp_department <> 'Administration'";
     $result=mysqli_query($conn,$query);
  }
+ if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page1.php   ");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -291,6 +294,15 @@
 
                 </div>
                 <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <form action="#" method="POST">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" name="dash" >
+                            Dashboard
+                         </button>
+                    </form>
+                </li>
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"

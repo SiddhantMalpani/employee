@@ -6,6 +6,15 @@ if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
     die();
 }
+if(isset($_POST['mi'])){
+    header("Location: /landingpage1/department1.php");
+}
+if(isset($_POST['mis'])){
+    header("Location: /landingpage1/staff1.php");
+}
+if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page1.php   ");
+}
 ?>
 
 <!DOCTYPE html>
@@ -345,6 +354,15 @@ if(isset($_POST['logout'])){
 
                 </div>
                 <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <form action="#" method="POST">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" name="dash" >
+                            Dashboard
+                         </button>
+                    </form>
+                </li>
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
@@ -507,7 +525,10 @@ if(isset($_POST['logout'])){
                                 <h2 class="card-title pricing-card-title num"><?php echo $count1;  ?></h2>
                                 <i class="fa-solid fa-layer-group "></i>
                             </span>
-                            <a href="/landingpage1/department1.php">More info >></a>
+                            <form action="#" method="POST">
+                            <button type="submit" name="mi" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
                         </div>
                     </div>
                     <div class="card mb-2 rounded-5 shadow-sm carddashboard staff-card">
@@ -519,8 +540,10 @@ if(isset($_POST['logout'])){
                                 <h2 class="card-title pricing-card-title num"><?php echo $count2 ?></h2>
                                 <i class="fa-solid fa-users"></i>
                             </span>
-
-                            <a href="/landingpage1/staff1.php">More info >></a>
+                            <form action="#" method="POST">
+                            <button type="submit" name="mis" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
                         </div>
                     </div>
                     <div class="card mb-2 rounded-5 shadow-sm carddashboard leave-card">
