@@ -309,10 +309,10 @@
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/staff1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
                                         Employees</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
                                         Employees</a></li>
                             </ul>

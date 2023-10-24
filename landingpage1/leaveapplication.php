@@ -3,6 +3,8 @@ include '/xampp/htdocs/employee/loginfolder/lconnect.php';
 include '/xampp/htdocs/employee/landingpage1/totalcalc.php';
 include '/xampp/htdocs/employee/landingpage1/alldep.php';
 session_start();
+$query1="SELECT department_name FROM `depart1`";
+$data1= mysqli_query($conn,$query1); 
 if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
     die();
@@ -16,6 +18,50 @@ if(isset($_POST['leav'])){
 if(isset($_POST['all'])){
     header("Location: /landingpage1/leaveapplication.php");
 }
+if(isset($_POST('leavestatus'))){
+    header("Location: /landingpage1/checkleave.php");
+  }
+if(isset($_POST['apply'])){
+    $start_date=$_POST['startdate'];
+    $end_date=$_POST['enddate'];
+    $leave_type=$_POST['leavetype'];
+    $details=$_POST['details'];
+    $depart=$_POST['see_depart'];
+    if(empty($details)){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Please fill</strong> in the details field
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>';
+    }
+    else if(empty($end_date)){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Please fill the </strong> end date.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>';
+    }
+    else if(empty($start_date)){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Please fill the </strong> start date.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>';
+    }
+    else if(empty($leave_type)){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Please fill the</strong> leavetype option.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>';
+    }
+    else{
+        $query="INSERT INTO leave1 (`sno`,`name`,`department`,`start_date`, `end_date`,`leave_type`,`details`,`apply_date`)
+        VALUES (NULL,'$_SESSION[employeename]', '$depart', '$start_date', '$end_date', '$leave_type','$details',CURRENT_DATE)";
+        $data= mysqli_query($conn,$query);
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Your Details has been successfully Submitted.</strong>
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -454,9 +500,64 @@ if(isset($_POST['all'])){
                 <form action="#" method="POST">
                     <div style="margin-top: 40px;margin-left: 37%;">
                      <button type="submit" name="all" class="btn btn-primary" >Apply for leave</button>
-                     <button type="submit" name="it" class="btn btn-outline-secondary">Check Leave Status</button>
+                     <button type="submit" name="leavestatus" class="btn btn-outline-secondary">Check Leave Status</button>
                      </div>
                     </form>
+            <div class=" cent col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="background-color:aliceblue;border: 5px solid aqua;border-radius:10px;margin-top:20px;margin-left:400px;padding:10px 10px;">
+         <form class="frm" method="POST">
+           <div class="form-outline mb-4">
+           <label class="form-label" for="form3Example3"> <b>Start Date</b></label>
+            <input type="date" id="form3Example3" name="startdate" class="form-control form-control-lg" />
+          </div>
+          <div class="form-outline mb-3">
+          <label class="form-label" for="form3Example4"><b>End Date</b></label>
+            <input type="date" name="enddate" id="form3Example4" class="form-control form-control-lg"/>
+          </div>
+          <div class="alpha" style="display: flex;flex-wrap:wrap;">
+          <div style="width: 50%;">
+          <label class="form-label" for="form3Example3"> <b>Leave Type</b></label>
+           <select class="form-select" name="leavetype" aria-label="Default select example">
+                <option selected>Select Leave type</option>
+                <option value="Casual">Casual</option>
+                <option value="Privileged Leave"> Privileged Leave</option>
+                <option value="Medical Leave">Medical Leave</option>
+                <option value="Vacation">Vacation</option>
+                <option value="Sabbatical Leave">Sabbatical Leave</option>
+                <option value="Religious Festival Leaves">Religious Festival Leaves</option>
+                <option value="Loss of Pay">Loss of Pay</option>
+            </select>
+            </div>
+            <div style="width: 50%;">
+          <label class="form-label" for="form3Example3"> <b>Department</b></label>
+           <select class="form-select" name="see_depart" aria-label="Default select example">
+                <option selected>Select your Department</option>
+                <?php
+                   while($row = mysqli_fetch_assoc($data1)){
+                   ?>
+                   <!-- <option value='department_name'> echo $row['department_name']; ?> </option> -->
+                   <?php echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";?>
+                  <?php
+                     }
+                   ?>
+                <!-- <option value="IT">IT </option>
+                <option value="Finance">Finance</option>
+                <option value="Human Resource">Human Resource</option>
+                <option value="Sales and Marketing">Sales and Marketing</option> -->
+            </select>
+          </div>
+          </div>
+          
+          <div class="form-outline mb-4" >
+          <label class="form-label" for="form3Example3"> <b>Details  </b><h10>*required field</h10></label>
+            <input type="input" id="form3Example3" name="details" class="form-control form-control-lg"
+              placeholder="Enter details here" />
+          </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" value="Register" name="apply" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">APPLY</button>
+          </div>
+        </form>
+      </div>
                 <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                         class="copyright-text">
                         <b>2023</b> Employee Management System

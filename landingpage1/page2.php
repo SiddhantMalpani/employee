@@ -11,7 +11,7 @@ if(isset($_POST['coll'])){
     header("Location: /landingpage1/colleague1.php");
 }
 if(isset($_POST['leav'])){
-    header("Location: /landingpage1/leavestaff.php");
+    header("Location: /landingpage1/leaveapplication.php");
 }
 ?>
 <!DOCTYPE html>
