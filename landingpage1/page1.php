@@ -375,10 +375,10 @@ if(isset($_POST['dash'])){
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/landingpage1/department1.php"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Department</a></li>
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Departments</a></li>
                                 <li><a href="/landingpage1/department1.php"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Department</a></li>
                             </ul>
                         </div>
@@ -387,19 +387,16 @@ if(isset($_POST['dash'])){
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Staff
+                            Employees
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Staff</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/staff1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View All
+                                        Employees</a></li>
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Edit
-                                        Staff</a></li>
+                                        Employees</a></li>
                             </ul>
                         </div>
                     </li>

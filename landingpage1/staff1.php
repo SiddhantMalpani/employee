@@ -36,6 +36,9 @@
  if(isset($_POST['dash'])){
     header("Location: /landingpage1/page1.php   ");
 }
+if(isset($_POST['mana'])){
+    header("Location: /landingpage1/managestaff.php   ");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -312,10 +315,10 @@
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Department</a></li>
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Departments</a></li>
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Department</a></li>
                             </ul>
                         </div>
@@ -324,19 +327,17 @@
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Staff
+                            Employees
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Staff</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/staff1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Employees</a></li>
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Edit
-                                        Staff</a></li>
+                                        Employees</a></li>
+                              
                             </ul>
                         </div>
                     </li>
@@ -426,7 +427,7 @@
                      <button type="submit" name="fin" class="btn btn-outline-secondary">Finance Department</button>
                      <button type="submit" name="hr" class="btn btn-outline-secondary" >Human Resource Department</button>
                      <button type="submit" name="sm" class="btn btn-outline-secondary" >Sales and Marketing Department</button>
-                    </div>
+                    </div>  
                     </form>
                     </div>
                     <div class="container">
@@ -462,7 +463,11 @@
                                </div>
                             </div>
                         </div>
-
+                        <div style="margin-left: 520px;margin-top: 30px">
+                        <form action="#" method="POST">
+                        <button type="submit" name="mana" class="btn btn-primary" >Manage Employees</button>
+                        </form>
+                        </div>
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>
                     </div>

@@ -80,7 +80,8 @@
                 <?php
                    while($row = mysqli_fetch_assoc($data)){
                    ?>
-                   <option value='department_name'><?php echo $row['department_name'] ?> </option>
+                   <!-- <option value='department_name'> echo $row['department_name']; ?> </option> -->
+                   <?php echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";?>
                   <?php
                      }
                    ?>

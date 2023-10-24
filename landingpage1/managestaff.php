@@ -1,23 +1,49 @@
 <?php
  include '/xampp/htdocs/employee/loginfolder/lconnect.php';
  include '/xampp/htdocs/employee/landingpage1/alldep.php';
- $query="SELECT depart1.department_name, COALESCE(COUNT(login.emp_name), 0) AS NumberOfEmployees
- FROM depart1
- LEFT JOIN login ON depart1.department_name = login.emp_department
- WHERE depart1.department_name <> 'Administration'
- GROUP BY depart1.department_name";
- $result1=mysqli_query($conn,$query);
- $count=mysqli_num_rows($result1);
- if(isset($_POST['bttn'])){
-    $dep_name=$_POST['depnam'];
-    $quer="INSERT INTO depart1 (department_name)
-    VALUES ('$dep_name')";
-    $result2=mysqli_query($bonn,$quer);
-    header("Location: department1.php");
+ if(isset($_POST['all'])){
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department FROM login WHERE emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
+ }
+ else if(isset($_POST['it'])){
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department
+    FROM login
+    WHERE emp_department = 'IT' AND emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
+ }
+ else if(isset($_POST['fin'])){
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department
+    FROM login
+    WHERE emp_department = 'Finance' AND emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
+ }
+ else if(isset($_POST['hr'])){
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department
+    FROM login
+    WHERE emp_department = 'Human Resource' AND emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
+ }
+ else if(isset($_POST['sm'])){
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department
+    FROM login
+    WHERE emp_department = 'Sales and Marketing' AND emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
+ }
+ else{
+    $query="SELECT emp_name,emp_email,emp_gender,emp_department FROM login WHERE emp_department <> 'Administration'";
+    $result=mysqli_query($conn,$query);
  }
  if(isset($_POST['dash'])){
     header("Location: /landingpage1/page1.php   ");
- }
+}
+if(isset($_POST['del'])){
+    $uname=$_POST['uname'];
+    $udepartment=$_POST['udepart'];
+    $query="DELETE FROM login
+    WHERE emp_name = '$uname' AND emp_department = '$udepartment'";
+    $result=mysqli_query($conn,$query);
+    header("Location: /landingpage1/managestaff.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +64,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" rel="stylesheet"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/landingpage1/department.css">
+    <link rel="stylesheet" href="/landingpage1/staff.css">
 
 </head>
 
@@ -264,14 +291,14 @@
             <h1 class="visually-hidden">Sidebars examples</h1>
 
 
-            <div class="flex-shrink-0 p-3 sidebarheight" style="width: 250px; background-color: rgb(55, 55, 115);">
-                <!-- <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+            <div class="flex-shrink-0 p- sidebarheight" style="width: 250px; background-color: rgb(55, 55, 115);">
+                <!-- <a href="/" class="d-flex alig3n-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
                     <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
                     <span class="fs-5 fw-semibold">Collapsible</span>
                   </a> -->
                 <div class="sidebarhead">
                     <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        Employee details
+                        Employee Details 
 
                 </div>
                 <ul class="list-unstyled ps-0">
@@ -292,7 +319,7 @@
                         </button>
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="/landingpage1/department1.php"
+                                <li><a href="#"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
                                         Departments</a></li>
                                 <li><a href="#"
@@ -309,12 +336,13 @@
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/staff1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
                                         Employees</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
                                         Employees</a></li>
+                              
                             </ul>
                         </div>
                     </li>
@@ -385,39 +413,60 @@
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2>DEPARTMENTS</h2>
+                            <h2>MANAGE EMPLOYEES</h2>
                         </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                 <ol class="breadcrumb margin">
                                     <li class="breadcrumb-item"><a href="/landingpage1/page1.php">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Departments</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Manage Employees</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
-                    <body>
-                        <div class="container">
+                    <form action="#" method="POST">
+                    <div class="jpp">
+                     <button type="submit" name="all" class="btn btn-primary" >All Employees</button>
+                     <button type="submit" name="it" class="btn btn-outline-secondary">IT Department</button>
+                     <button type="submit" name="fin" class="btn btn-outline-secondary">Finance Department</button>
+                     <button type="submit" name="hr" class="btn btn-outline-secondary" >Human Resource Department</button>
+                     <button type="submit" name="sm" class="btn btn-outline-secondary" >Sales and Marketing Department</button>
+                    </div>
+                    </form>
+                    </div>
+                    <div class="container">
                             <div class="row mt-5">
                                <div class="col">
-                                 <div class="card mt-5" style="height:      250px; overflow-y:scroll">
-                                   <table class="table table-bordered text-center" >
+                                 <div class="card mt-5" style="height:300px; overflow-y:scroll">
+                                   <table class="table table-bordered text-300pxcenter">
                                     <tr>
                                         <td><b>S.NO</b></td>
-                                        <td><b>Department Name</b></td>
-                                        <td><b>Number of Employees</b></td>
+                                        <td><b>EMPLOYEE NAME</b></td>
+                                        <td><b>EMAIL</b></td>
+                                        <td><b>GENDER</b></td>
+                                        <td><b>DEPARTMENT</b></td>
                                     </tr>
                                     <tr>
                                         
                                         <?php
                                          $cc=1;
-                                          while($row = mysqli_fetch_assoc($result1)){
+                                          while($row = mysqli_fetch_assoc($result)){
                                         ?>
                                         <td><?php echo $cc++; ?></td>
-                                        <td><?php echo $row['department_name']; ?></td>
-                                        <td><?php echo $row['NumberOfEmployees']; ?></td>
-                                        
+                                        <td><?php echo $row['emp_name']; ?></td>
+                                        <td><?php echo $row['emp_email']; ?></td>
+                                        <td><?php echo $row['emp_gender']; ?></td>
+                                        <td><?php echo $row['emp_department']; ?></td>
+                                        <form action="#" method="POST"></form>
+                                        <td>
+                                            <form action="#" method="POST">
+                                            <input type="hidden" id="name" name="uname" value="<?php echo $row['emp_name'] ?>">
+                                            <input type="hidden" id="department" name="udepart" value="<?php echo $row['emp_department'] ?>">
+                                              <button type="submit" name="del" class="btn btn-outline-primary">Delete Employee</button>
+                                             </form>
+                                         </td>
+                                        </form>
                                     </tr>
                                     <?php
                                       }
@@ -427,20 +476,7 @@
                                </div>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center">
-                 <form action="#" method="POST">
-                           <div class="col-auto">
-                      <label class="form-label" for="form3Example4"><b>Add Department</b></label>
-                    </div>
-                 <div class="col-auto">
-                   <input type="input" name="depnam" id="input" class="form-control" aria-describedby="passwordHelpInline" placeholder="Department Name">
-                     </div>
-                   <div class="col-auto">
-                 <button class="btn btn-primary" type="submit" name="bttn" >ADD</button>
-                </div>
-                 </form>
-                </div>        
-             </body>
+
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>
                     </div>

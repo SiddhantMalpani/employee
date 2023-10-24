@@ -316,14 +316,11 @@
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
+                                <li><a href="/landingpage1/staff1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View al
                                         Staff</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Edit
                                         Staff</a></li>
                             </ul>
                         </div>
@@ -395,8 +392,8 @@
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2>DEPARTMENTS</h2>
-                        </div>
+                            <h2>SALARY</h2>
+                               </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -435,7 +432,7 @@
                                             <form action="#" method="POST">
                                             <input type="hidden" id="name" name="uname" value="<?php echo $row['emp_name'] ?>">
                                             <input type="hidden" id="department" name="udepart" value="<?php echo $row['emp_department'] ?>">
-                                             <input style="border: 2px solid grey; border-radius:10px;" type="input" name="amt" placeholder="Enter amount">
+                                             <input style="border: 2px solid grey; border-radius:10px; width:120px;" type="input" name="amt" placeholder="Enter amount">
                                               <button type="submit" name="upd" class="btn btn-outline-primary">Update</button>
                                              </form>
                                          </td>
