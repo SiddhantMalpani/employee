@@ -18,6 +18,15 @@ if(isset($_POST['mis'])){
 if(isset($_POST['dash'])){
     header("Location: /landingpage1/page1.php   ");
 }
+if(isset($_POST['lea'])){
+    header("Location: /landingpage1/leavereq.php   ");
+}
+if(isset($_POST['notification'])){
+    header("Location: /landingpage1/notificationreceive.php");
+}
+if(isset($_POST['task'])){
+    header("Location: /landingpage1/taskallocation.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -423,7 +432,7 @@ if(isset($_POST['dash'])){
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href=""
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
                                         Leave</a></li>
                                 <li><a href="#"
@@ -552,12 +561,14 @@ if(isset($_POST['dash'])){
                         </div>
                         <div class="card-body">
                             <span class="dashboard-card">
-                                <h2 class="card-title pricing-card-title num">0</h2>
+                                <h2 class="card-title pricing-card-title num"><?php echo $count4 ?></h2>
                                 <i class="fa-solid fa-right-from-bracket"></i>
                             </span>
 
-                            <button type="button" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                            <form action="#" method="POST">
+                            <button type="submit" name="lea" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
                                 >></button>
+                                </form>
                         </div>
                     </div>
                     <div class="card mb-2 rounded-5 shadow-sm carddashboard salary-card">
@@ -575,6 +586,37 @@ if(isset($_POST['dash'])){
                                 </form>
                         </div>
                     </div>
+                    <div class="card mb-2 rounded-5 shadow-sm carddashboard notifications-card">
+                        <div class="card-header py-3 rounded-top-5">
+                            <h4 class="my-0 fw-normal">NOTIFICATIONS</h4>
+                        </div>
+                        <div class="card-body">
+                            <span class="dashboard-card">
+                                <h2 class="card-title pricing-card-title num"><?php echo $count5 ?></h2>
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                            </span>
+                            <form action="#" method="POST">
+                            <button type="submit" name="notification" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
+                        </div>
+                    </div>
+                    <div class="card mb-2 rounded-5 shadow-sm carddashboard task-card">
+                        <div class="card-header py-3 rounded-top-5">
+                            <h4 class="my-0 fw-normal">TASK ALLOCATION</h4>
+                        </div>
+                        <div class="card-body">
+                            <span class="dashboard-card">
+                                <h2 class="card-title pricing-card-title num"><?php echo $count5 ?></h2>
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                            </span>
+                            <form action="#" method="POST">
+                            <button type="submit" name="task" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
+                        </div>
+                    </div>
+                    
 
                 </div>
 

@@ -14,4 +14,11 @@
  $sal_count3=mysqli_query($conn,$query3);
  $c = $sal_count3->fetch_assoc();
  $count3=$c['Total'];
+ $query3="SELECT *
+ FROM leave1 WHERE status ='Pending'";
+$emp_count1=mysqli_query($conn,$query3);
+$count4=mysqli_num_rows($emp_count1);
+$query4="SELECT * FROM notify";
+$emp_count2=mysqli_query($conn,$query4);
+$count5=mysqli_num_rows($emp_count2);
 ?>

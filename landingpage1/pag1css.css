@@ -150,7 +150,12 @@ align-items: center;
     background-color: lightgreen;
     
 }
-
+.notifications-card{
+    background-color: rgb(245, 245, 50);
+}
+.task-card{
+    background-color: mediumpurple;
+}
 .heightside{
     height: 100vh;
 }

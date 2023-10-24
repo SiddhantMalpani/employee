@@ -15,12 +15,15 @@ if(isset($_POST['coll'])){
 if(isset($_POST['leav'])){
     header("Location: /landingpage1/leavestaff.php");
 }
+if(isset($_POST['leavestatus'])){
+    header("Location: /landingpage1/checkleave.php");
+}
 if(isset($_POST['all'])){
     header("Location: /landingpage1/leaveapplication.php");
 }
-if(isset($_POST('leavestatus'))){
-    header("Location: /landingpage1/checkleave.php");
-  }
+// if(isset($_POST('leavestatus'))){
+//     header("Location: /landingpage1/checkleave.php");
+//   }
 if(isset($_POST['apply'])){
     $start_date=$_POST['startdate'];
     $end_date=$_POST['enddate'];

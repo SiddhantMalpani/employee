@@ -11,7 +11,18 @@ body{
     width: 100%; 
     
 }
-
+.colleagues-card{
+    background-color: lightblue;
+}
+.leave-card{
+    background-color: lemonchiffon;
+}
+.notify-card{
+    background-color: lightseagreen;
+}
+.task-card{
+    background-color: limegreen;
+}
 .headadjust{
     background: linear-gradient(45deg, purple, rgb(55, 55, 115));
     display: flex;

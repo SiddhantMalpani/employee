@@ -436,7 +436,6 @@
                                               <button type="submit" name="upd" class="btn btn-outline-primary">Update</button>
                                              </form>
                                          </td>
-                                        </form>
                                         
                                     </tr>
                                     <?php

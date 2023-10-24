@@ -5,66 +5,38 @@ include '/xampp/htdocs/employee/landingpage1/alldep.php';
 session_start();
 $query1="SELECT department_name FROM `depart1`";
 $data1= mysqli_query($conn,$query1); 
-$query2="SELECT * FROM leave1
-WHERE name = '$_SESSION[employeename]'";
-$data2=mysqli_query($conn,$query2);
 if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
     die();
 }
-if(isset($_POST['coll'])){
-    header("Location: /landingpage1/colleague1.php");
+if(isset($_POST['sal'])){
+    header("Location: /landingpage1/salary1.php");
 }
-if(isset($_POST['leav'])){
-    header("Location: /landingpage1/leavestaff.php");
+if(isset($_POST['mi'])){
+    header("Location: /landingpage1/department1.php");
 }
-if(isset($_POST['all'])){
-    header("Location: /landingpage1/leaveapplication.php");
+if(isset($_POST['mis'])){
+    header("Location: /landingpage1/staff1.php");
 }
-if(isset($_POST['apply'])){
-    $start_date=$_POST['startdate'];
-    $end_date=$_POST['enddate'];
-    $leave_type=$_POST['leavetype'];
+if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page1.php   ");
+}
+if(isset($_POST['lea'])){
+    header("Location: /landingpage1/leavereq.php   ");
+}
+if(isset($_POST['notification'])){
+    header("Location: /landingpage1/notificationreceive.php");
+}
+if(isset($_POST['assign'])){
+    $department=$_POST['department'];
     $details=$_POST['details'];
-    $depart=$_POST['see_depart'];
-    if(empty($details)){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Please fill</strong> in the details field
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-         </div>';
-    }
-    else if(empty($end_date)){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Please fill the </strong> end date.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-         </div>';
-    }
-    else if(empty($start_date)){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Please fill the </strong> start date.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-         </div>';
-    }
-    else if(empty($leave_type)){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Please fill the</strong> leavetype option.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-         </div>';
-    }
-    else{
-        $query="INSERT INTO leave1 (`sno`,`name`,`department`,`start_date`, `end_date`,`leave_type`,`details`,`apply_date`)
-        VALUES (NULL,'$_SESSION[employeename]', '$depart', '$start_date', '$end_date', '$leave_type','$details',CURRENT_DATE)";
-        $data= mysqli_query($conn,$query);
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Your Details has been successfully Submitted.</strong>
-       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
-    }
+   $query1="INSERT INTO `notify` (`sno`,`name`,`from_department`,`to_department`,`  details`)
+   VALUES (NULL,'Administrator','admin','$department','$details')";
+   $data1= mysqli_query($conn,$query1);
+   header("Location: /landingpage1/taskallocation.php");
 }
-// if(isset($_POST('leavestatus'))){
-  
-// }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,6 +50,7 @@ if(isset($_POST['apply'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Employee Management System- Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" rel="stylesheet"
@@ -90,7 +63,7 @@ if(isset($_POST['apply'])){
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/landingpage1/pag2css.css">
+    <link rel="stylesheet" href="/landingpage1/pag1css.css">
 
 </head>
 
@@ -396,12 +369,54 @@ if(isset($_POST['apply'])){
                     <span class="fs-5 fw-semibold">Collapsible</span>
                   </a> -->
                 <div class="sidebarhead">
-                    <h5 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        <?php echo "WELCOME ".strtoupper($_SESSION['employeename'] )?> </h5>
+                    <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
+                        Employee Details</h4>
 
                 </div>
                 <ul class="list-unstyled ps-0">
-                   
+                <li class="mb-1">
+                    <form action="#" method="POST">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" name="dash" >
+                            Dashboard
+                         </button>
+                    </form>
+                </li>
+                    <li class="mb-1">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                            Departments
+                        </button>
+                        <div class="collapse " id="home-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/landingpage1/department1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Departments</a></li>
+                                <li><a href="/landingpage1/department1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
+                                        Department</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            Employees
+                        </button>
+                        <div class="collapse" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/landingpage1/staff1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View All
+                                        Employees</a></li>
+                                <li><a href="/landingpage1/managestaff.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
+                                        Employees</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
@@ -411,7 +426,7 @@ if(isset($_POST['apply'])){
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Salary</a></li>
                             </ul>
                         </div>
@@ -425,11 +440,11 @@ if(isset($_POST['apply'])){
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Apply
+                                <li><a href=""
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
                                         Leave</a></li>
                                 <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Approve
                                         Leave</a></li>
                             </ul>
                         </div>
@@ -438,8 +453,24 @@ if(isset($_POST['apply'])){
                      <form action="#" method="POST">
                      <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
                      </form>
-                    </div> 
-                    
+                    </div>  
+                    <!-- <li class="border-top my-3 "></li> -->
+                    <!-- <li class="borderline">  <br> </li> -->
+
+
+                    <!-- <li class="mb-1">
+                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Account
+                  </button>
+                  <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a></li>
+                    </ul>
+                  </div>
+                </li> -->
                 </ul>
             </div>
            
@@ -467,31 +498,26 @@ if(isset($_POST['apply'])){
 
             <div class="main">
 
+
                 <div class="head">
                     <div class="headadjust">
                         <!-- <div class="head-icon1-group">
                             <i class="fa-solid fa-bars  head-icon1"></i>
                         </div> -->
                         <div class="head-icon2-group">
-                          <img src="/landingpage1/icon.png" alt="icon" class="staff-icon">
-                            <p class="logo-name"><?php echo strtoupper($_SESSION['employeename'] ) ?></p>
+                            <i class="fa-solid fa-user head-icon2"></i>
+                            <p class="logo-name">Admin</p>
                         </div>
                     </div>
                 </div>
-
-                
-
-
                 <div class="main-content">
                     <div class="top">
                         <div class="dashboard">
-                            <h2> <b>LEAVES </b> </h2>
+                            <h2> <b>TASK ALLOCATION</b> </h2>
                         </div>
                         
                     </div>
                 </div>
-
-
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                     <symbol id="check" viewBox="0 0 16 16">
                         <title>Check</title>
@@ -499,53 +525,38 @@ if(isset($_POST['apply'])){
                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                     </symbol>
                 </svg>
-                <form action="#" method="POST">
-                    <div style="margin-top: 40px;margin-left: 37%;">
-                     <button type="submit" name="all" class="btn btn-primary" >Apply for leave</button>
-                     <button type="submit" name="leavestatus" class="btn btn-outline-secondary">Check Leave Status</button>
-                     </div>
-                </form>
-                <div class="container">
-                            <div class="row mt-5">
-                               <div class="col">
-                                 <div class="card mt-5" style="height:100px; overflow-y:scroll">
-                                   <table class="table table-bordered text-center" >
-                                    <tr>
-                                        <td><b>S.NO</b></td>
-                                        <td><b>Employee Name</b></td>
-                                        <td><b>Department</b></td>
-                                        <td><b>Start Date</b></td>
-                                        <td><b>End Date</b></td>
-                                        <td><b>Leave Type</b></td>
-                                        <td><b>Details</b></td>
-                                        <td><b>Apply Date</b></td>
-                                        <td><b>Status</b></td>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <?php
-                                         $cc=1;
-                                          while($row = mysqli_fetch_assoc($data2)){
-                                        ?>
-                                        <td><?php echo $cc++; ?></td>
-                                        <td><?php echo $row['name']; ?></td>
-                                        <td><?php echo $row['department']; ?></td>
-                                        <td><?php echo $row['start_date']; ?></td>
-                                        <td><?php echo $row['end_date']; ?></td>
-                                        <td><?php echo $row['leave_type']; ?></td>
-                                        <td><?php echo $row['details']; ?></td>
-                                        <td><?php echo $row['apply_date']; ?></td>
-                                        <td><?php echo $row['status']; ?></td>
-                                    </tr>
-                                    <?php
-                                      }
-                                     ?>
-                                   </table>
-                                 </div>
-                               </div>
-                            </div>
-                        </div>
-                
+                <div class=" cent col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="background-color:aliceblue;border: 5px solid aqua;border-radius:10px;margin-top:80px;margin-left:400px;padding:10px 10px;">
+         <form class="frm" method="POST">
+          <div class="alpha" style="display: flex;flex-wrap:wrap;">
+            <div style="width: 70%;">
+          <label class="form-label" for="form3Example3"> <b>Assign Department</b></label>
+           <select class="form-select" name="department" aria-label="Default select example">
+                <option selected>Select your Department</option>
+                <?php
+                   while($row = mysqli_fetch_assoc($data1)){
+                   ?>
+                   <!-- <option value='department_name'> echo $row['department_name']; ?> </option> -->
+                   <?php echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";?>
+                  <?php
+                     }
+                   ?>
+            </select>
+          </div>
+          </div>
+          <br>
+          <div class="form-outline mb-4" >
+          <label class="form-label" for="form3Example3"> <b>Task Details  </b><h10>*required field</h10></label>
+           <textarea id="details" name="details" rows="4" cols="50" style="width: 100%; border:2px solid black;border-radius:10px;"></textarea>
+          </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" value="assign" name="assign" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">ASSIGN</button>
+          </div>
+        </form>
+      </div>
+
+
+
                 <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                         class="copyright-text">
                         <b>2023</b> Employee Management System

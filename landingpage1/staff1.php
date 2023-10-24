@@ -408,7 +408,7 @@ if(isset($_POST['mana'])){
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2>Employees</h2>
+                            <h2><b>Employees</b></h2>
                         </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>

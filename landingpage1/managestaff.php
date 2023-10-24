@@ -413,7 +413,7 @@ if(isset($_POST['del'])){
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2>MANAGE EMPLOYEES</h2>
+                            <h2><b>MANAGE EMPLOYEES</b></h2>
                         </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>
