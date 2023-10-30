@@ -30,7 +30,7 @@ if(isset($_POST['notification'])){
 if(isset($_POST['assign'])){
     $department=$_POST['department'];
     $details=$_POST['details'];
-   $query1="INSERT INTO `notify` (`sno`,`name`,`from_department`,`to_department`,`  details`)
+   $query1="INSERT INTO `notify` (`sno`,`name`,`from_department`,`to_department`,`details`)
    VALUES (NULL,'Administrator','admin','$department','$details')";
    $data1= mysqli_query($conn,$query1);
    header("Location: /landingpage1/taskallocation.php");
@@ -531,7 +531,7 @@ if(isset($_POST['assign'])){
             <div style="width: 70%;">
           <label class="form-label" for="form3Example3"> <b>Assign Department</b></label>
            <select class="form-select" name="department" aria-label="Default select example">
-                <option selected>Select your Department</option>
+                <option selected>Select Department</option>
                 <?php
                    while($row = mysqli_fetch_assoc($data1)){
                    ?>

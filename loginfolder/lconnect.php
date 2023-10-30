@@ -2,8 +2,6 @@
  $servername  ="localhost";
  $username    ="root";
  $password    ="";
- $dbname      ="loginpage";
-
- $conn=mysqli_connect($servername, $username, $password,$dbname);
- 
-?>
+ $database="loginpage";
+ $conn=mysqli_connect($servername, $username, $password,$database);
+?> 
