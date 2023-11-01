@@ -43,7 +43,7 @@
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="/loginfolder/images/single.png"
+        <img src="/loginfolder/images/single.png" 
           class="img-fluid" alt="Sample image" width="700">
       </div>
       <div class=" cent col-md-8 col-lg-6 col-xl-4 offset-xl-1">
@@ -80,7 +80,8 @@
                 <?php
                    while($row = mysqli_fetch_assoc($data)){
                    ?>
-                   <option value='department_name'><?php echo $row['department_name'] ?> </option>
+                   <!-- <option value='department_name'> echo $row['department_name']; ?> </option> -->
+                   <?php echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";?>
                   <?php
                      }
                    ?>

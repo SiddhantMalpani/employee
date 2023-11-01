@@ -36,8 +36,13 @@
  if(isset($_POST['dash'])){
     header("Location: /landingpage1/page1.php   ");
 }
-if(isset($_POST['mana'])){
-    header("Location: /landingpage1/managestaff.php   ");
+if(isset($_POST['del'])){
+    $uname=$_POST['uname'];
+    $udepartment=$_POST['udepart'];
+    $query="DELETE FROM login
+    WHERE emp_name = '$uname' AND emp_department = '$udepartment'";
+    $result=mysqli_query($conn,$query);
+    header("Location: /landingpage1/managestaff.php");
 }
 if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
@@ -321,10 +326,7 @@ if(isset($_POST['logout'])){
                                 <li><a href="/landingpage1/department1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
                                         Departments</a></li>
-                                <!-- <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Department</a></li>
-                            </ul> -->
+                            </ul>
                         </div>
                     </li>
                     <li class="mb-1">
@@ -353,8 +355,8 @@ if(isset($_POST['logout'])){
                         </button>
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="/landingpage1/salary1.php  "
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
+                                <li><a href="/landingpage1/salary1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Salary</a></li>
                             </ul>
                         </div>
@@ -368,11 +370,8 @@ if(isset($_POST['logout'])){
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/leavereq.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
-                                        Leave</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Approve
                                         Leave</a></li>
                             </ul>
                         </div>
@@ -382,7 +381,6 @@ if(isset($_POST['logout'])){
                      <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
                      </form>
                     </div> 
-
                     <!-- <li class="border-top my-3 "></li> -->
                     <!-- <li class="borderline">  <br> </li> -->
 
@@ -417,14 +415,14 @@ if(isset($_POST['logout'])){
                 <div class="main-content">
                     <div class="top">
                         <div class="Departments">
-                            <h2><b>Employees</b></h2>
+                            <h2><b>MANAGE EMPLOYEES</b></h2>
                         </div>
                         <div class="home-icon">
                             <i class="fa-solid fa-house home-icon2 "></i>
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                 <ol class="breadcrumb margin">
                                     <li class="breadcrumb-item"><a href="/landingpage1/page1.php">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Employees</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Manage Employees</li>
                                 </ol>
                             </nav>
                         </div>
@@ -436,7 +434,7 @@ if(isset($_POST['logout'])){
                      <button type="submit" name="fin" class="btn btn-outline-secondary">Finance Department</button>
                      <button type="submit" name="hr" class="btn btn-outline-secondary" >Human Resource Department</button>
                      <button type="submit" name="sm" class="btn btn-outline-secondary" >Sales and Marketing Department</button>
-                    </div>  
+                    </div>
                     </form>
                     </div>
                     <div class="container">
@@ -462,7 +460,15 @@ if(isset($_POST['logout'])){
                                         <td><?php echo $row['emp_email']; ?></td>
                                         <td><?php echo $row['emp_gender']; ?></td>
                                         <td><?php echo $row['emp_department']; ?></td>
-                                        
+                                        <form action="#" method="POST"></form>
+                                        <td>
+                                            <form action="#" method="POST">
+                                            <input type="hidden" id="name" name="uname" value="<?php echo $row['emp_name'] ?>">
+                                            <input type="hidden" id="department" name="udepart" value="<?php echo $row['emp_department'] ?>">
+                                              <button type="submit" name="del" class="btn btn-outline-primary">Delete Employee</button>
+                                             </form>
+                                         </td>
+                                        </form>
                                     </tr>
                                     <?php
                                       }
@@ -472,11 +478,7 @@ if(isset($_POST['logout'])){
                                </div>
                             </div>
                         </div>
-                        <div style="margin-left: 520px;margin-top: 17px">
-                        <form action="#" method="POST">
-                        <button type="submit" name="mana" class="btn btn-primary" >Manage Employees</button>
-                        </form>
-                        </div>
+
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>
                     </div>

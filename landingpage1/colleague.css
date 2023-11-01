@@ -8,16 +8,12 @@ body{
 
 .head{
     height: 50px;
-    width: 100%; 
-    
-}
-
-.headadjust{
+    width: 100%;
     background: linear-gradient(45deg, purple, rgb(55, 55, 115));
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;  
+    justify-content: space-between;
+    align-items: center; 
 }
 
 .footer{
@@ -62,22 +58,22 @@ align-items: center;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    /* background-color: pink; */
+    margin: 10px;
 }
 
-.dashboard{
-    margin-top: 40px;
+.Departments{
+    margin-top: 10px;
 }
 
 .home-icon{
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .home-icon2{
     font-size: 10px;
-    margin-top: 10px;
-    /* margin-right: 10px; */
+    margin-top: 12px;
     color: grey;
     padding: 5px;
 }
@@ -105,77 +101,82 @@ align-items: center;
     margin-top: 3px;
 }
 
-.carddashboard{
-    height: 200px;
-    width: 300px;
-    margin-top: 10px;
+.head-icon1:hover{
+    opacity: 1;
+    font-size: 28;
+    transition: 0.5s;
 }
 
-
-
-.dashboard-card{
-    height: 100px;
-    font-size: 70px;
-    opacity: 0.2;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.num{
-    font-size: 75px;
-}
-
-.maincard{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin:25px;
-}
-
-.department-card{
-    margin-top: 10px;
-    background-color: lightblue;
-}
-
-.staff-card{
-    background-color: lightpink;
-}
-
-.leave-card{
-    background-color: lightcoral;
-}
-
-.salary-card{
-    background-color: lightgreen;
-    
-}
-.notifications-card{
-    background-color: rgb(245, 245, 50);
-}
-.task-card{
-    background-color: mediumpurple;
-}
-.heightside{
+.sidebarheight{
     height: 100vh;
 }
 
-.cardbtn{
-    margin-top: -10px;
-   height: 20px;
-   font-size: small;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
+.head{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.closingbtn{
+    font-size: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+.margin{
+    font-size: 10px;
+    margin-top: 10px;
+    color: grey;
+    padding: 5px;
+}
+
+.department-box {
+    height: 200px;
+    width: calc(100% - 40px); /* Adjusted width to account for left and right margins */
+    margin: 20px; /* 20px margin on all sides */
+    box-sizing: border-box;
+    border-top: 5px solid lightblue;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray ;
+    background-color: white;
+}
+
+.department-content{
+    margin: 10px;
+}
+
+.department-form{
+    margin:20px ;
+}
+
+.dptbtn{
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
 }
 
 .main{
-    width: 100vw;
+    width: 100%;
 }
 
-.closebtn{
-    margin-left: 30px;
-    margin-bottom: 25px;
-    font-size: 20px;
+.colleague-heading{
+    text-align: center;
 }
 
+.fontsize{
+    font-size: small;
+    margin-top: 25px;
+}
+
+.home-icon2{
+    font-size: 10px;
+    margin-top: 13px;
+    /* margin-right: 10px; */
+    color: grey;
+    padding: 5px;
+}

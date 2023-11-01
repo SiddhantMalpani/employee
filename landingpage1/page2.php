@@ -1,3 +1,28 @@
+<?php
+include '/xampp/htdocs/employee/loginfolder/lconnect.php';
+include '/xampp/htdocs/employee/landingpage1/totalcalc.php';
+include '/xampp/htdocs/employee/landingpage1/alldep.php';
+session_start();
+if(isset($_POST['logout'])){
+    header("Location: /loginfolder/log.php");
+    die();
+}
+if(isset($_POST['coll'])){
+    header("Location: /landingpage1/colleague1.php");
+}
+if(isset($_POST['leav'])){
+    header("Location: /landingpage1/leaveapplication.php");
+}
+if(isset($_POST['notify'])){
+    header("Location: /landingpage1/notifyadmin.php");
+}
+if(isset($_POST['allocated'])){
+    header("Location: /landingpage1/taskallocated.php");
+}
+if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page2.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -330,45 +355,86 @@
                     <span class="fs-5 fw-semibold">Collapsible</span>
                   </a> -->
                 <div class="sidebarhead">
-                    <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        Employee </h4>
+                    <h5 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
+                        <?php echo "WELCOME ".strtoupper($_SESSION['employeename'] )?> </h5>
 
                 </div>
                 <ul class="list-unstyled ps-0">
-                   
+
+                   <li class="mb-1">
+                      <form action="#" method="POST">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" name="dash" aria-expanded="false">
+                            Dashboard
+                        </button>
+                        </form>
+                    </li>
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                            Salary
+                            Colleagues
                         </button>
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/colleague1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
-                                        Salary</a></li>
+                                        Colleagues</a></li>
                             </ul>
                         </div>
                     </li>
-
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#leave-collapse" aria-expanded="false">
-                            Leave
+                            Leaves
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/leaveapplication.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Apply
                                         Leave</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/checkleave.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
-                                        Leave</a></li>
+                                        Leave Status</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" data-bs-target="#leave-collapse" aria-expanded="false">
+                            Notify
+                        </button>
+                        <div class="collapse" id="leave-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/landingpage1/notifyadmin.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Notify Admin
+                                        </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" data-bs-target="#leave-collapse" aria-expanded="false">
+                            Task Allocated
+                        </button>
+                        <div class="collapse" id="leave-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/landingpage1/taskallocated.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View Allotted Task
+                                        </a></li>
                             </ul>
                         </div>
                     </li>
 
+                    <div class="aapp" style="margin-top: 140%;margin-left: 45px;">
+                     <form action="#" method="POST">
+                     <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
+                     </form>
+                    </div> 
                     
                 </ul>
             </div>
@@ -397,7 +463,6 @@
 
             <div class="main">
 
-
                 <div class="head">
                     <div class="headadjust">
                         <!-- <div class="head-icon1-group">
@@ -405,7 +470,7 @@
                         </div> -->
                         <div class="head-icon2-group">
                           <img src="/landingpage1/icon.png" alt="icon" class="staff-icon">
-                            <p class="logo-name">Staff</p>
+                            <p class="logo-name"><?php echo strtoupper($_SESSION['employeename'] ) ?></p>
                         </div>
                     </div>
                 </div>
@@ -418,10 +483,7 @@
                         <div class="dashboard">
                             <h2> <b>Dashboard</b> </h2>
                         </div>
-                        <div class="home-icon">
-                            <i class="fa-solid fa-house home-icon2 "></i>
-                            <p class="home"> <b>Home</b> </p>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -433,7 +495,25 @@
                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                     </symbol>
                 </svg>
+                <div class="container" style="display: flex;flex-wrap:wrap;">
+                <div class="col maincard ">
+                    <div class="card mb-2 rounded-5 shadow-sm carddashboard colleagues-card">
+                        <div class="card-header py-3 rounded-top-5">
+                            <h4 class="my-0 fw-normal">COLLEAGUES</h4>
+                        </div>
+                        <div class="card-body">
+                            <span class="dashboard-card">
+                                <i class="fa-solid fa-people-group"></i>
+                            </span>
 
+                            <form action="#" method="POST">
+                            <button type="submit" name="coll" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="col maincard ">
                     
                     <div class="card mb-2 rounded-5 shadow-sm carddashboard leave-card">
@@ -442,15 +522,56 @@
                         </div>
                         <div class="card-body">
                             <span class="dashboard-card">
-                                <h2 class="card-title pricing-card-title num">0</h2>
                                 <i class="fa-solid fa-right-from-bracket"></i>
                             </span>
 
-                            <button type="button" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                            <form action="#" method="POST">
+                            <button type="submit" name="leav" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
                                 >></button>
+                                </form>
                         </div>
                     </div>
 
+                </div>
+                <div class="col maincard ">
+                    
+                    <div class="card mb-2 rounded-5 shadow-sm carddashboard notify-card">
+                        <div class="card-header py-3 rounded-top-5">
+                            <h4 class="my-0 fw-normal">NOTIFY ADMIN</h4>
+                        </div>
+                        <div class="card-body">
+                            <span class="dashboard-card">
+                                <i class="fa-solid fa-bell"></i>
+                            </span>
+
+                            <form action="#" method="POST">
+                            <button type="submit" name="notify" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col maincard ">
+                    
+                    <div class="card mb-2 rounded-5 shadow-sm carddashboard task-card">
+                        <div class="card-header py-3 rounded-top-5">
+                            <h4 class="my-0 fw-normal">TASK ALLOCATED</h4>
+                        </div>
+                        <div class="card-body">
+                            <span class="dashboard-card">
+                            <i class="fa-solid fa-list-check"></i>
+                            </span>
+
+                            <form action="#" method="POST">
+                            <button type="submit" name="allocated" class="w-100 btn btn-lg btn-primary card-text cardbtn">More info
+                                >></button>
+                                </form>
+                        </div>
+                    </div>
+
+                </div>
+                
                 </div>
 
 

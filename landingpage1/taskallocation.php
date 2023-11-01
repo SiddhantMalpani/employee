@@ -1,49 +1,42 @@
 <?php
- include '/xampp/htdocs/employee/loginfolder/lconnect.php';
- include '/xampp/htdocs/employee/landingpage1/alldep.php';
- if(isset($_POST['all'])){
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department FROM login WHERE emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- else if(isset($_POST['it'])){
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department
-    FROM login
-    WHERE emp_department = 'IT' AND emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- else if(isset($_POST['fin'])){
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department
-    FROM login
-    WHERE emp_department = 'Finance' AND emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- else if(isset($_POST['hr'])){
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department
-    FROM login
-    WHERE emp_department = 'Human Resource' AND emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- else if(isset($_POST['sm'])){
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department
-    FROM login
-    WHERE emp_department = 'Sales and Marketing' AND emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- else{
-    $query="SELECT emp_name,emp_email,emp_gender,emp_department FROM login WHERE emp_department <> 'Administration'";
-    $result=mysqli_query($conn,$query);
- }
- if(isset($_POST['dash'])){
-    header("Location: /landingpage1/page1.php   ");
-}
-if(isset($_POST['mana'])){
-    header("Location: /landingpage1/managestaff.php   ");
-}
+include '/xampp/htdocs/employee/loginfolder/lconnect.php';
+include '/xampp/htdocs/employee/landingpage1/totalcalc.php';
+include '/xampp/htdocs/employee/landingpage1/alldep.php';
+session_start();
+$query1="SELECT department_name FROM `depart1`";
+$data1= mysqli_query($conn,$query1); 
 if(isset($_POST['logout'])){
     header("Location: /loginfolder/log.php");
     die();
 }
+if(isset($_POST['sal'])){
+    header("Location: /landingpage1/salary1.php");
+}
+if(isset($_POST['mi'])){
+    header("Location: /landingpage1/department1.php");
+}
+if(isset($_POST['mis'])){
+    header("Location: /landingpage1/staff1.php");
+}
+if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page1.php   ");
+}
+if(isset($_POST['lea'])){
+    header("Location: /landingpage1/leavereq.php   ");
+}
+if(isset($_POST['notification'])){
+    header("Location: /landingpage1/notificationreceive.php");
+}
+if(isset($_POST['assign'])){
+    $department=$_POST['department'];
+    $details=$_POST['details'];
+   $query1="INSERT INTO `notify` (`sno`,`name`,`from_department`,`to_department`,`details`)
+   VALUES (NULL,'Administrator','admin','$department','$details')";
+   $data1= mysqli_query($conn,$query1);
+   header("Location: /landingpage1/taskallocation.php");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +63,7 @@ if(isset($_POST['logout'])){
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/landingpage1/staff.css">
+    <link rel="stylesheet" href="/landingpage1/pag1css.css">
 
 </head>
 
@@ -223,11 +216,90 @@ if(isset($_POST['logout'])){
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+    
+                .bd-placeholder-img {
+                    font-size: 1.125rem;
+                    text-anchor: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    user-select: none;
+                }
+
+                @media (min-width: 768px) {
+                    .bd-placeholder-img-lg {
+                        font-size: 3.5rem;
+                    }
+                }
+
+                .b-example-divider {
+                    width: 100%;
+                    height: 3rem;
+                    background-color: rgba(0, 0, 0, .1);
+                    border: solid rgba(0, 0, 0, .15);
+                    border-width: 1px 0;
+                    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+                }
+
+                .b-example-vr {
+                    flex-shrink: 0;
+                    width: 1.5rem;
+                    height: 100vh;
+                }
+
+                .bi {
+                    vertical-align: -.125em;
+                    fill: currentColor;
+                }
+
+                .nav-scroller {
+                    position: relative;
+                    z-index: 2;
+                    height: 2.75rem;
+                    overflow-y: hidden;
+                }
+
+                .nav-scroller .nav {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    padding-bottom: 1rem;
+                    margin-top: -1px;
+                    overflow-x: auto;
+                    text-align: center;
+                    white-space: nowrap;
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .btn-bd-primary {
+                    --bd-violet-bg: #712cf9;
+                    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+                    --bs-btn-font-weight: 600;
+                    --bs-btn-color: var(--bs-white);
+                    --bs-btn-bg: var(--bd-violet-bg);
+                    --bs-btn-border-color: var(--bd-violet-bg);
+                    --bs-btn-hover-color: var(--bs-white);
+                    --bs-btn-hover-bg: #6528e0;
+                    --bs-btn-hover-border-color: #6528e0;
+                    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+                    --bs-btn-active-color: var(--bs-btn-hover-color);
+                    --bs-btn-active-bg: #5a23c8;
+                    --bs-btn-active-border-color: #5a23c8;
+                }
+
+                .bd-mode-toggle {
+                    z-index: 1500;
+                }
+
+                .bd-mode-toggle .dropdown-menu .active .bi {
+                    display: block !important;
+                }
+          
+
     </style>
 
 
     <!-- Custom styles for this template -->
-    <link href="sidebars.css" rel="stylesheet">
+    
     </head>
 
     <body>
@@ -286,18 +358,19 @@ if(isset($_POST['logout'])){
             </symbol>
         </svg>
 
-        <main class="d-flex flex-nowrap">
+        <main class="d-flex flex-nowrap ">
             <h1 class="visually-hidden">Sidebars examples</h1>
 
 
-            <div class="flex-shrink-0 p- sidebarheight" style="width: 250px; background-color: rgb(55, 55, 115);">
-                <!-- <a href="/" class="d-flex alig3n-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+            <div class="flex-shrink-0 p-3 sidebarheight heightside"
+                style="width: 250px; background-color: rgb(55, 55, 115);">
+                <!-- <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
                     <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
                     <span class="fs-5 fw-semibold">Collapsible</span>
                   </a> -->
                 <div class="sidebarhead">
                     <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        Employee Details 
+                        Employee Details</h4>
 
                 </div>
                 <ul class="list-unstyled ps-0">
@@ -314,17 +387,17 @@ if(isset($_POST['logout'])){
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-                            Department
+                            Departments
                         </button>
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/landingpage1/department1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
                                         Departments</a></li>
-                                <!-- <li><a href="#"
+                                <!-- <li><a href="/landingpage1/department1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Department</a></li>
-                            </ul> -->
+                                        Department</a></li> -->
+                            </ul>
                         </div>
                     </li>
                     <li class="mb-1">
@@ -336,12 +409,11 @@ if(isset($_POST['logout'])){
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/landingpage1/staff1.php"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View All
                                         Employees</a></li>
                                 <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
                                         Employees</a></li>
-                              
                             </ul>
                         </div>
                     </li>
@@ -353,8 +425,8 @@ if(isset($_POST['logout'])){
                         </button>
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="/landingpage1/salary1.php  "
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
+                                <li><a href="/landingpage1/salary1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Salary</a></li>
                             </ul>
                         </div>
@@ -368,11 +440,8 @@ if(isset($_POST['logout'])){
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/leavereq.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
-                                        Leave</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Approve
                                         Leave</a></li>
                             </ul>
                         </div>
@@ -381,8 +450,7 @@ if(isset($_POST['logout'])){
                      <form action="#" method="POST">
                      <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
                      </form>
-                    </div> 
-
+                    </div>  
                     <!-- <li class="border-top my-3 "></li> -->
                     <!-- <li class="borderline">  <br> </li> -->
 
@@ -402,85 +470,97 @@ if(isset($_POST['logout'])){
                 </li> -->
                 </ul>
             </div>
+           
+            <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                <symbol id="check2" viewBox="0 0 16 16">
+                    <path
+                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </symbol>
+                <symbol id="circle-half" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+                </symbol>
+                <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+                    <path
+                        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+                </symbol>
+                <symbol id="sun-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                </symbol>
+            </svg>
+
+
 
             <div class="main">
 
 
                 <div class="head">
-                    <div class="head-icon2-group">
-                        <i class="fa-solid fa-user head-icon2"></i>
-                        <p class="logo-name">Admin</p>
+                    <div class="headadjust">
+                        <!-- <div class="head-icon1-group">
+                            <i class="fa-solid fa-bars  head-icon1"></i>
+                        </div> -->
+                        <div class="head-icon2-group">
+                            <i class="fa-solid fa-user head-icon2"></i>
+                            <p class="logo-name">Admin</p>
+                        </div>
                     </div>
                 </div>
-
-
                 <div class="main-content">
                     <div class="top">
-                        <div class="Departments">
-                            <h2><b>Employees</b></h2>
+                        <div class="dashboard">
+                            <h2> <b>TASK ALLOCATION</b> </h2>
                         </div>
-                        <div class="home-icon">
-                            <i class="fa-solid fa-house home-icon2 "></i>
-                            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                                <ol class="breadcrumb margin">
-                                    <li class="breadcrumb-item"><a href="/landingpage1/page1.php">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Employees</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                    <form action="#" method="POST">
-                    <div class="jpp">
-                     <button type="submit" name="all" class="btn btn-primary" >All Employees</button>
-                     <button type="submit" name="it" class="btn btn-outline-secondary">IT Department</button>
-                     <button type="submit" name="fin" class="btn btn-outline-secondary">Finance Department</button>
-                     <button type="submit" name="hr" class="btn btn-outline-secondary" >Human Resource Department</button>
-                     <button type="submit" name="sm" class="btn btn-outline-secondary" >Sales and Marketing Department</button>
-                    </div>  
-                    </form>
-                    </div>
-                    <div class="container">
-                            <div class="row mt-5">
-                               <div class="col">
-                                 <div class="card mt-5" style="height:300px; overflow-y:scroll">
-                                   <table class="table table-bordered text-300pxcenter">
-                                    <tr>
-                                        <td><b>S.NO</b></td>
-                                        <td><b>EMPLOYEE NAME</b></td>
-                                        <td><b>EMAIL</b></td>
-                                        <td><b>GENDER</b></td>
-                                        <td><b>DEPARTMENT</b></td>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <?php
-                                         $cc=1;
-                                          while($row = mysqli_fetch_assoc($result)){
-                                        ?>
-                                        <td><?php echo $cc++; ?></td>
-                                        <td><?php echo $row['emp_name']; ?></td>
-                                        <td><?php echo $row['emp_email']; ?></td>
-                                        <td><?php echo $row['emp_gender']; ?></td>
-                                        <td><?php echo $row['emp_department']; ?></td>
-                                        
-                                    </tr>
-                                    <?php
-                                      }
-                                     ?>
-                                   </table>
-                                 </div>
-                               </div>
-                            </div>
-                        </div>
-                        <div style="margin-left: 520px;margin-top: 17px">
-                        <form action="#" method="POST">
-                        <button type="submit" name="mana" class="btn btn-primary" >Manage Employees</button>
-                        </form>
-                        </div>
-                    <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
-                            class="copyright-text"><b>2023</b> Employee Management System</p>
+                        
                     </div>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                    <symbol id="check" viewBox="0 0 16 16">
+                        <title>Check</title>
+                        <path
+                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                    </symbol>
+                </svg>
+                <div class=" cent col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="background-color:aliceblue;border: 5px solid aqua;border-radius:10px;margin-top:80px;margin-left:400px;padding:10px 10px;">
+         <form class="frm" method="POST">
+          <div class="alpha" style="display: flex;flex-wrap:wrap;">
+            <div style="width: 70%;">
+          <label class="form-label" for="form3Example3"> <b>Assign Department</b></label>
+           <select class="form-select" name="department" aria-label="Default select example">
+                <option selected>Select Department</option>
+                <?php
+                   while($row = mysqli_fetch_assoc($data1)){
+                   ?>
+                   <!-- <option value='department_name'> echo $row['department_name']; ?> </option> -->
+                   <?php echo "<option value='" . $row['department_name'] . "'>" . $row['department_name'] . "</option>";?>
+                  <?php
+                     }
+                   ?>
+            </select>
+          </div>
+          </div>
+          <br>
+          <div class="form-outline mb-4" >
+          <label class="form-label" for="form3Example3"> <b>Task Details  </b><h10>*required field</h10></label>
+           <textarea id="details" name="details" rows="4" cols="50" style="width: 100%; border:2px solid black;border-radius:10px;"></textarea>
+          </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" value="assign" name="assign" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">ASSIGN</button>
+          </div>
+        </form>
+      </div>
+
+
+
+                <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
+                        class="copyright-text">
+                        <b>2023</b> Employee Management System
+                    </p>
+                </div>
+
+            </div>
     </body>
 
 </html>

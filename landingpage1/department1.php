@@ -15,6 +15,13 @@
     $result2=mysqli_query($bonn,$quer);
     header("Location: department1.php");
  }
+ if(isset($_POST['dash'])){
+    header("Location: /landingpage1/page1.php   ");
+ }
+ if(isset($_POST['logout'])){
+    header("Location: /loginfolder/log.php");
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -268,10 +275,19 @@
                   </a> -->
                 <div class="sidebarhead">
                     <h4 class="d-flex align-items-center  text-decoration-none border-bottom border-white text-white">
-                        Employee details
+                        Employee Details
 
                 </div>
                 <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <form action="#" method="POST">
+                        <button
+                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
+                            data-bs-toggle="collapse" name="dash" >
+                            Dashboard
+                         </button>
+                    </form>
+                </li>
                     <li class="mb-1">
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
@@ -281,11 +297,11 @@
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/landingpage1/department1.php"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
-                                        Department</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Department</a></li>
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Departments</a></li>
+                                <!-- <li><a href="#"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
+                                        Department</a></li> -->
                             </ul>
                         </div>
                     </li>
@@ -293,19 +309,16 @@
                         <button
                             class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white link-body-emphasis"
                             data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Staff
+                            Employees
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
-                                        Staff</a></li>
-                                <li><a href="#"
+                                <li><a href="/landingpage1/staff1.php"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View all
+                                        Employees</a></li>
+                                <li><a href="/landingpage1/managestaff.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Manage
-                                        Staff</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Edit
-                                        Staff</a></li>
+                                        Employees</a></li>
                             </ul>
                         </div>
                     </li>
@@ -317,7 +330,7 @@
                         </button>
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/salary1.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Add
                                         Salary</a></li>
                             </ul>
@@ -332,15 +345,17 @@
                         </button>
                         <div class="collapse" id="leave-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/landingpage1/leavereq.php"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">View
-                                        Leave</a></li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Approve
                                         Leave</a></li>
                             </ul>
                         </div>
                     </li>
+                    <div class="aapp" style="margin-top: 150%;margin-left: 45px;">
+                     <form action="#" method="POST">
+                     <button type="submit" name="logout" class="btn btn-primary btn-lg">Logout</button>
+                     </form>
+                    </div>
 
                     <!-- <li class="border-top my-3 "></li> -->
                     <!-- <li class="borderline">  <br> </li> -->
@@ -392,8 +407,8 @@
                         <div class="container">
                             <div class="row mt-5">
                                <div class="col">
-                                 <div class="card mt-5">
-                                   <table class="table table-bordered text-center">
+                                 <div class="card mt-5" style="height:      250px; overflow-y:scroll">
+                                   <table class="table table-bordered text-center" >
                                     <tr>
                                         <td><b>S.NO</b></td>
                                         <td><b>Department Name</b></td>
@@ -418,22 +433,8 @@
                                </div>
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center">
-                 <form action="#" method="POST">
-                           <div class="col-auto">
-                      <label class="form-label" for="form3Example4"><b>Add Department</b></label>
-                    </div>
-                 <div class="col-auto">
-                   <input type="input" name="depnam" id="input" class="form-control" aria-describedby="passwordHelpInline" placeholder="Department Name">
-                     </div>
-                   <div class="col-auto">
-                 <button class="btn btn-primary" type="submit" name="bttn" >ADD</button>
-                </div>
-                 </form>
-                </div>        
-                    </body>
 
-
+             </body>
                     <div class="footer"> <i class="fa-regular fa-copyright copyright-icon"></i> &nbsp;<p
                             class="copyright-text"><b>2023</b> Employee Management System</p>
                     </div>

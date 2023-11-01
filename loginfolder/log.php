@@ -15,6 +15,8 @@
       die();
     }
     else{
+      session_start();
+      $_SESSION['employeename']=$uname;
       header("Location: /landingpage1/page2.php");
       die();
     }
@@ -65,7 +67,7 @@
               placeholder="Enter password" />
             
           </div>
-          <div class="text-center text-lg-start mt-4 pt-2">
+          <div class="text-center text-lg-start mt-2 pt-2">
             <button type="submit" value="login" name="login" class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
             <p class="small fw-bold mt-0 pt-0 mb-0">Don't have an account? <a href="/loginfolder/reg.php"
